@@ -34,7 +34,9 @@
             // labelInfo
             // 
             labelInfo.AutoSize = true;
-            labelInfo.Location = new Point(4, 2);
+            labelInfo.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point);
+            labelInfo.ForeColor = Color.FromArgb(52, 73, 94);
+            labelInfo.Location = new Point(8, 8);
             labelInfo.Name = "labelInfo";
             labelInfo.Size = new Size(68, 20);
             labelInfo.TabIndex = 0;
@@ -44,10 +46,12 @@
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            BackColor = Color.FromArgb(210, 255, 210);
+            BackColor = Color.White;
+            BorderStyle = BorderStyle.FixedSingle;
             Controls.Add(labelInfo);
+            Margin = new Padding(3, 3, 3, 6);
             Name = "DayOffControl";
-            Size = new Size(350, 51);
+            Size = new Size(350, 60);
             ResumeLayout(false);
             PerformLayout();
         }

@@ -5,7 +5,7 @@ namespace sess2
 {
     public class DBHelper
     {
-        private static string connStr = "Host=localhost:5432;Username=postgres;password=00000000;Database=sess1";
+        private static string connStr = "Host=localhost:5432;Username=postgres;password=00000000;Database=employeesApp";
 
         public static DataTable ExecuteQuery(string query, Dictionary<string, object> parameters = null)
         {

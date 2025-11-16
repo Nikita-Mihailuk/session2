@@ -88,7 +88,7 @@
             // 
             // panel1
             // 
-            panel1.BackColor = SystemColors.ScrollBar;
+            panel1.BackColor = Color.FromArgb(236, 240, 241);
             panel1.Controls.Add(buttonClearAssistant);
             panel1.Controls.Add(buttonClearManager);
             panel1.Controls.Add(comboBoxAssistant);
@@ -124,7 +124,8 @@
             panel1.Controls.Add(label1);
             panel1.Location = new Point(12, 12);
             panel1.Name = "panel1";
-            panel1.Size = new Size(413, 689);
+            panel1.Padding = new Padding(15);
+            panel1.Size = new Size(440, 683);
             panel1.TabIndex = 0;
             // 
             // buttonClearAssistant
@@ -136,6 +137,7 @@
             buttonClearAssistant.TabIndex = 36;
             buttonClearAssistant.Text = "\U0001f9f9";
             buttonClearAssistant.UseVisualStyleBackColor = true;
+            buttonClearAssistant.Click += buttonClearAssistant_Click;
             // 
             // buttonClearManager
             // 
@@ -146,6 +148,7 @@
             buttonClearManager.TabIndex = 35;
             buttonClearManager.Text = "\U0001f9f9";
             buttonClearManager.UseVisualStyleBackColor = true;
+            buttonClearManager.Click += buttonClearManager_Click;
             // 
             // comboBoxAssistant
             // 
@@ -190,9 +193,13 @@
             // 
             // buttonBack
             // 
-            buttonBack.BackColor = Color.FromArgb(210, 255, 210);
+            buttonBack.BackColor = Color.FromArgb(149, 165, 166);
             buttonBack.Enabled = false;
-            buttonBack.Location = new Point(268, 627);
+            buttonBack.FlatAppearance.BorderSize = 0;
+            buttonBack.FlatStyle = FlatStyle.Flat;
+            buttonBack.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
+            buttonBack.ForeColor = Color.White;
+            buttonBack.Location = new Point(277, 615);
             buttonBack.Name = "buttonBack";
             buttonBack.Size = new Size(122, 48);
             buttonBack.TabIndex = 30;
@@ -202,9 +209,13 @@
             // 
             // buttonSave
             // 
-            buttonSave.BackColor = Color.FromArgb(210, 255, 210);
+            buttonSave.BackColor = Color.FromArgb(46, 204, 113);
             buttonSave.Enabled = false;
-            buttonSave.Location = new Point(140, 627);
+            buttonSave.FlatAppearance.BorderSize = 0;
+            buttonSave.FlatStyle = FlatStyle.Flat;
+            buttonSave.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
+            buttonSave.ForeColor = Color.White;
+            buttonSave.Location = new Point(149, 615);
             buttonSave.Name = "buttonSave";
             buttonSave.Size = new Size(122, 48);
             buttonSave.TabIndex = 29;
@@ -214,10 +225,14 @@
             // 
             // buttonEdit
             // 
-            buttonEdit.BackColor = Color.FromArgb(210, 255, 210);
-            buttonEdit.Location = new Point(12, 627);
+            buttonEdit.BackColor = Color.FromArgb(52, 152, 219);
+            buttonEdit.FlatAppearance.BorderSize = 0;
+            buttonEdit.FlatStyle = FlatStyle.Flat;
+            buttonEdit.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
+            buttonEdit.ForeColor = Color.White;
+            buttonEdit.Location = new Point(13, 615);
             buttonEdit.Name = "buttonEdit";
-            buttonEdit.Size = new Size(122, 48);
+            buttonEdit.Size = new Size(132, 48);
             buttonEdit.TabIndex = 28;
             buttonEdit.Text = "Редактировать";
             buttonEdit.UseVisualStyleBackColor = false;
@@ -421,17 +436,17 @@
             // textBoxFirstName
             // 
             textBoxFirstName.Enabled = false;
-            textBoxFirstName.Location = new Point(12, 89);
+            textBoxFirstName.Location = new Point(15, 95);
             textBoxFirstName.Name = "textBoxFirstName";
             textBoxFirstName.ScrollBars = ScrollBars.Horizontal;
-            textBoxFirstName.Size = new Size(247, 27);
+            textBoxFirstName.Size = new Size(270, 27);
             textBoxFirstName.TabIndex = 3;
             // 
             // label2
             // 
             label2.AutoSize = true;
             label2.Enabled = false;
-            label2.Location = new Point(12, 66);
+            label2.Location = new Point(15, 72);
             label2.Name = "label2";
             label2.Size = new Size(39, 20);
             label2.TabIndex = 2;
@@ -440,17 +455,17 @@
             // textBoxLastName
             // 
             textBoxLastName.Enabled = false;
-            textBoxLastName.Location = new Point(12, 36);
+            textBoxLastName.Location = new Point(15, 40);
             textBoxLastName.Name = "textBoxLastName";
             textBoxLastName.ScrollBars = ScrollBars.Horizontal;
-            textBoxLastName.Size = new Size(247, 27);
+            textBoxLastName.Size = new Size(270, 27);
             textBoxLastName.TabIndex = 1;
             // 
             // label1
             // 
             label1.AutoSize = true;
             label1.Enabled = false;
-            label1.Location = new Point(12, 13);
+            label1.Location = new Point(15, 17);
             label1.Name = "label1";
             label1.Size = new Size(73, 20);
             label1.TabIndex = 0;
@@ -458,7 +473,7 @@
             // 
             // panel2
             // 
-            panel2.BackColor = SystemColors.ScrollBar;
+            panel2.BackColor = Color.FromArgb(236, 240, 241);
             panel2.Controls.Add(buttonAddDayOff);
             panel2.Controls.Add(textBoxDescription);
             panel2.Controls.Add(comboBoxTypeDayOff);
@@ -477,14 +492,19 @@
             panel2.Controls.Add(buttonFuture);
             panel2.Controls.Add(buttonCurrent);
             panel2.Controls.Add(buttonPast);
-            panel2.Location = new Point(431, 12);
+            panel2.Location = new Point(462, 12);
             panel2.Name = "panel2";
-            panel2.Size = new Size(413, 689);
+            panel2.Padding = new Padding(15);
+            panel2.Size = new Size(440, 683);
             panel2.TabIndex = 1;
             // 
             // buttonAddDayOff
             // 
-            buttonAddDayOff.BackColor = Color.FromArgb(210, 255, 210);
+            buttonAddDayOff.BackColor = Color.FromArgb(46, 204, 113);
+            buttonAddDayOff.FlatAppearance.BorderSize = 0;
+            buttonAddDayOff.FlatStyle = FlatStyle.Flat;
+            buttonAddDayOff.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
+            buttonAddDayOff.ForeColor = Color.White;
             buttonAddDayOff.Location = new Point(252, 617);
             buttonAddDayOff.Name = "buttonAddDayOff";
             buttonAddDayOff.Size = new Size(142, 48);
@@ -623,7 +643,11 @@
             // 
             // buttonFuture
             // 
-            buttonFuture.BackColor = Color.FromArgb(210, 255, 210);
+            buttonFuture.BackColor = Color.FromArgb(52, 152, 219);
+            buttonFuture.FlatAppearance.BorderSize = 0;
+            buttonFuture.FlatStyle = FlatStyle.Flat;
+            buttonFuture.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
+            buttonFuture.ForeColor = Color.White;
             buttonFuture.Location = new Point(272, 3);
             buttonFuture.Name = "buttonFuture";
             buttonFuture.Size = new Size(122, 30);
@@ -634,7 +658,11 @@
             // 
             // buttonCurrent
             // 
-            buttonCurrent.BackColor = Color.FromArgb(210, 255, 210);
+            buttonCurrent.BackColor = Color.FromArgb(52, 152, 219);
+            buttonCurrent.FlatAppearance.BorderSize = 0;
+            buttonCurrent.FlatStyle = FlatStyle.Flat;
+            buttonCurrent.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
+            buttonCurrent.ForeColor = Color.White;
             buttonCurrent.Location = new Point(144, 3);
             buttonCurrent.Name = "buttonCurrent";
             buttonCurrent.Size = new Size(122, 30);
@@ -645,7 +673,11 @@
             // 
             // buttonPast
             // 
-            buttonPast.BackColor = Color.FromArgb(210, 255, 210);
+            buttonPast.BackColor = Color.FromArgb(52, 152, 219);
+            buttonPast.FlatAppearance.BorderSize = 0;
+            buttonPast.FlatStyle = FlatStyle.Flat;
+            buttonPast.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
+            buttonPast.ForeColor = Color.White;
             buttonPast.Location = new Point(16, 3);
             buttonPast.Name = "buttonPast";
             buttonPast.Size = new Size(122, 30);
@@ -658,7 +690,7 @@
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(852, 713);
+            ClientSize = new Size(914, 705);
             Controls.Add(panel2);
             Controls.Add(panel1);
             FormBorderStyle = FormBorderStyle.FixedSingle;

@@ -12,7 +12,7 @@ namespace sess2
 
         private void LoadDepartments()
         {
-            TreeNode parrent = new TreeNode("Дороги России") { Tag = 0 };
+            TreeNode parrent = new TreeNode("Организационная структура") { Tag = 0 };
             treeViewDepartments.Nodes.Add(parrent);
             string query = @"SELECT department_id, department_name FROM departments WHERE department_id NOT IN (SELECT sub_department_id FROM sub_departments)";
             DataTable dt = DBHelper.ExecuteQuery(query);
@@ -73,8 +73,25 @@ namespace sess2
 
         private void buttonAddEmployee_Click(object sender, EventArgs e)
         {
-            AddEmployeeForm addEmployeeForm = new AddEmployeeForm((int)treeViewDepartments.SelectedNode.Tag, treeViewDepartments.SelectedNode.Text);
-            addEmployeeForm.ShowDialog();
+            if (treeViewDepartments.SelectedNode == null)
+            {
+                MessageBox.Show("Выберите подразделение", "Предупреждение", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            int departmentId = (int)treeViewDepartments.SelectedNode.Tag;
+            if (departmentId == 0)
+            {
+                MessageBox.Show("Выберите конкретный отдел, а не корневой элемент", "Предупреждение", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            AddEmployeeForm addEmployeeForm = new AddEmployeeForm(departmentId, treeViewDepartments.SelectedNode.Text);
+            if (addEmployeeForm.ShowDialog() == DialogResult.OK)
+            {
+                // Обновляем список сотрудников
+                LoadEmployees(departmentId);
+            }
         }
     }
 }

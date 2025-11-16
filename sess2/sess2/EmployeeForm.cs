@@ -14,7 +14,9 @@ namespace sess2
             InitializeComponent();
             this.employeeId = employeeId;
             LoadDepartments();
+            LoadEmployees();
             LoadEmployeeInfo();
+            LoadManagerAndAssistants();
             LoadDayOff();
         }
         private void LoadDepartments()
@@ -24,6 +26,53 @@ namespace sess2
             comboBoxDepartment.DataSource = dt;
             comboBoxDepartment.ValueMember = "department_id";
             comboBoxDepartment.DisplayMember = "department_name";
+        }
+
+        private void LoadEmployees()
+        {
+            string query = $@"SELECT employee_id, CONCAT(last_name, ' ', first_name, ' ', surname) as full_name 
+                            FROM employees WHERE employee_id != {employeeId} AND end_work_date IS NULL ORDER BY last_name";
+            DataTable dt = DBHelper.ExecuteQuery(query);
+
+            DataRow emptyRow = dt.NewRow();
+            emptyRow["employee_id"] = DBNull.Value;
+            emptyRow["full_name"] = "-- Не выбрано --";
+            dt.Rows.InsertAt(emptyRow, 0);
+
+            comboBoxManager.DataSource = dt.Copy();
+            comboBoxManager.ValueMember = "employee_id";
+            comboBoxManager.DisplayMember = "full_name";
+
+            comboBoxAssistant.DataSource = dt.Copy();
+            comboBoxAssistant.ValueMember = "employee_id";
+            comboBoxAssistant.DisplayMember = "full_name";
+        }
+
+        private void LoadManagerAndAssistants()
+        {
+            // Загружаем руководителя
+            string query = $@"SELECT manager_id FROM employees_assistants WHERE assistant_id = {employeeId}";
+            DataTable dt = DBHelper.ExecuteQuery(query);
+            if (dt.Rows.Count > 0 && dt.Rows[0]["manager_id"] != DBNull.Value)
+            {
+                comboBoxManager.SelectedValue = (int)dt.Rows[0]["manager_id"];
+            }
+            else
+            {
+                comboBoxManager.SelectedIndex = 0;
+            }
+
+            // Загружаем помощника
+            query = $@"SELECT assistant_id FROM employees_assistants WHERE manager_id = {employeeId}";
+            dt = DBHelper.ExecuteQuery(query);
+            if (dt.Rows.Count > 0 && dt.Rows[0]["assistant_id"] != DBNull.Value)
+            {
+                comboBoxAssistant.SelectedValue = (int)dt.Rows[0]["assistant_id"];
+            }
+            else
+            {
+                comboBoxAssistant.SelectedIndex = 0;
+            }
         }
         private void LoadEmployeeInfo()
         {
@@ -210,6 +259,32 @@ namespace sess2
                 {"@employee_id", employeeId },
             });
 
+            // Сохраняем руководителя
+            query = $@"DELETE FROM employees_assistants WHERE assistant_id = {employeeId}";
+            DBHelper.ExecuteQuery(query);
+            if (comboBoxManager.SelectedValue != DBNull.Value && comboBoxManager.SelectedIndex > 0)
+            {
+                query = @"INSERT INTO employees_assistants (manager_id, assistant_id) VALUES (@manager_id, @assistant_id)";
+                DBHelper.ExecuteQuery(query, new Dictionary<string, object>
+                {
+                    {"@manager_id", (int)comboBoxManager.SelectedValue },
+                    {"@assistant_id", employeeId }
+                });
+            }
+
+            // Сохраняем помощника
+            query = $@"DELETE FROM employees_assistants WHERE manager_id = {employeeId}";
+            DBHelper.ExecuteQuery(query);
+            if (comboBoxAssistant.SelectedValue != DBNull.Value && comboBoxAssistant.SelectedIndex > 0)
+            {
+                query = @"INSERT INTO employees_assistants (manager_id, assistant_id) VALUES (@manager_id, @assistant_id)";
+                DBHelper.ExecuteQuery(query, new Dictionary<string, object>
+                {
+                    {"@manager_id", employeeId },
+                    {"@assistant_id", (int)comboBoxAssistant.SelectedValue }
+                });
+            }
+
             EnabledInputs(false);
         }
 
@@ -217,6 +292,17 @@ namespace sess2
         {
             EnabledInputs(false);
             LoadEmployeeInfo();
+            LoadManagerAndAssistants();
+        }
+
+        private void buttonClearManager_Click(object sender, EventArgs e)
+        {
+            comboBoxManager.SelectedIndex = 0;
+        }
+
+        private void buttonClearAssistant_Click(object sender, EventArgs e)
+        {
+            comboBoxAssistant.SelectedIndex = 0;
         }
     }
 }

@@ -71,6 +71,7 @@
             buttonClearAssistant.TabIndex = 69;
             buttonClearAssistant.Text = "\U0001f9f9";
             buttonClearAssistant.UseVisualStyleBackColor = true;
+            buttonClearAssistant.Click += buttonClearAssistant_Click;
             // 
             // buttonClearManager
             // 
@@ -80,6 +81,7 @@
             buttonClearManager.TabIndex = 68;
             buttonClearManager.Text = "\U0001f9f9";
             buttonClearManager.UseVisualStyleBackColor = true;
+            buttonClearManager.Click += buttonClearManager_Click;
             // 
             // comboBoxAssistant
             // 
@@ -111,18 +113,27 @@
             // 
             // buttonBack
             // 
-            buttonBack.BackColor = Color.FromArgb(210, 255, 210);
-            buttonBack.Location = new Point(140, 505);
+            buttonBack.BackColor = Color.FromArgb(149, 165, 166);
+            buttonBack.FlatAppearance.BorderSize = 0;
+            buttonBack.FlatStyle = FlatStyle.Flat;
+            buttonBack.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
+            buttonBack.ForeColor = Color.White;
+            buttonBack.Location = new Point(144, 521);
             buttonBack.Name = "buttonBack";
             buttonBack.Size = new Size(122, 48);
             buttonBack.TabIndex = 63;
             buttonBack.Text = "Отменить";
             buttonBack.UseVisualStyleBackColor = false;
+            buttonBack.Click += buttonBack_Click;
             // 
             // buttonSave
             // 
-            buttonSave.BackColor = Color.FromArgb(210, 255, 210);
-            buttonSave.Location = new Point(12, 505);
+            buttonSave.BackColor = Color.FromArgb(46, 204, 113);
+            buttonSave.FlatAppearance.BorderSize = 0;
+            buttonSave.FlatStyle = FlatStyle.Flat;
+            buttonSave.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
+            buttonSave.ForeColor = Color.White;
+            buttonSave.Location = new Point(12, 521);
             buttonSave.Name = "buttonSave";
             buttonSave.Size = new Size(122, 48);
             buttonSave.TabIndex = 62;
@@ -298,16 +309,16 @@
             // 
             // textBoxFirstName
             // 
-            textBoxFirstName.Location = new Point(12, 85);
+            textBoxFirstName.Location = new Point(12, 86);
             textBoxFirstName.Name = "textBoxFirstName";
             textBoxFirstName.ScrollBars = ScrollBars.Horizontal;
-            textBoxFirstName.Size = new Size(247, 27);
+            textBoxFirstName.Size = new Size(270, 27);
             textBoxFirstName.TabIndex = 40;
             // 
             // label2
             // 
             label2.AutoSize = true;
-            label2.Location = new Point(12, 62);
+            label2.Location = new Point(12, 63);
             label2.Name = "label2";
             label2.Size = new Size(39, 20);
             label2.TabIndex = 39;
@@ -315,16 +326,16 @@
             // 
             // textBoxLastName
             // 
-            textBoxLastName.Location = new Point(12, 32);
+            textBoxLastName.Location = new Point(12, 28);
             textBoxLastName.Name = "textBoxLastName";
             textBoxLastName.ScrollBars = ScrollBars.Horizontal;
-            textBoxLastName.Size = new Size(247, 27);
+            textBoxLastName.Size = new Size(270, 27);
             textBoxLastName.TabIndex = 38;
             // 
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(12, 9);
+            label1.Location = new Point(12, 5);
             label1.Name = "label1";
             label1.Size = new Size(73, 20);
             label1.TabIndex = 37;
@@ -333,7 +344,7 @@
             // label14
             // 
             label14.AutoSize = true;
-            label14.Location = new Point(12, 433);
+            label14.Location = new Point(12, 452);
             label14.Name = "label14";
             label14.Size = new Size(207, 20);
             label14.TabIndex = 60;
@@ -341,19 +352,19 @@
             // 
             // textBoxDepartment
             // 
-            textBoxDepartment.Location = new Point(12, 456);
-            textBoxDepartment.MaxLength = 10;
+            textBoxDepartment.Enabled = false;
+            textBoxDepartment.Location = new Point(12, 475);
             textBoxDepartment.Name = "textBoxDepartment";
             textBoxDepartment.ScrollBars = ScrollBars.Horizontal;
-            textBoxDepartment.Size = new Size(190, 27);
+            textBoxDepartment.Size = new Size(270, 27);
             textBoxDepartment.TabIndex = 70;
             // 
             // AddEmployeeForm
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            BackColor = SystemColors.ScrollBar;
-            ClientSize = new Size(417, 570);
+            BackColor = Color.FromArgb(236, 240, 241);
+            ClientSize = new Size(432, 578);
             Controls.Add(textBoxDepartment);
             Controls.Add(buttonClearAssistant);
             Controls.Add(buttonClearManager);
@@ -388,6 +399,7 @@
             Controls.Add(label1);
             Icon = (Icon)resources.GetObject("$this.Icon");
             Name = "AddEmployeeForm";
+            Padding = new Padding(15);
             Text = "Управление персоналом";
             ResumeLayout(false);
             PerformLayout();
