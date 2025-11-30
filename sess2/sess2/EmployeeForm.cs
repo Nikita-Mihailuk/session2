@@ -115,6 +115,17 @@ namespace sess2
 
         }
 
+        public static bool IsValidEmail(string email)
+        {
+            var pattern = @"^[^@\s]+@[^@\s]+\.[^@\s]+$";
+            return Regex.IsMatch(email, pattern);
+        }
+        public static bool IsValidPhone(string phone)
+        {
+            var pattern = @"^[\d+\-()\s]+$";
+            return Regex.IsMatch(phone, pattern);
+        }
+
         private void AddDayOffCard(DataRow dr)
         {
             string start = Convert.ToDateTime(dr["started_at"]).ToString("d");
@@ -212,17 +223,6 @@ namespace sess2
         private void buttonEdit_Click(object sender, EventArgs e)
         {
             EnabledInputs(true);
-        }
-
-        private bool IsValidEmail(string email)
-        {
-            var pattern = @"^[^@\s]+@[^@\s]+\.[^@\s]+$";
-            return Regex.IsMatch(email, pattern);
-        }
-        private bool IsValidPhone(string phone)
-        {
-            var pattern = @"^[\d+\-()\s]+$";
-            return Regex.IsMatch(phone, pattern);
         }
 
         private void buttonSave_Click(object sender, EventArgs e)
